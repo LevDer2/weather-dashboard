@@ -24,7 +24,7 @@ export const Hero = () => {
             name="search"
             placeholder="Search location..."
           />
-          <button className={styles.searchButton} type="submit" aria-label="Search location">
+          <button className={styles.searchButton} type="submit">
             <span className={styles.searchIcon}></span>
           </button>
         </form>

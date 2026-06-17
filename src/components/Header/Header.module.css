@@ -10,21 +10,19 @@
 }
 
 .logo {
-  width: 82px;
-  height: 56px;
+  width: 34px;
+  height: 22px;
 }
 
 .nav {
-  gap: 34px;
+  display: none;
+  align-items: center;
 }
 
 .navLink {
   color: #000;
   font-family: "Montserrat Alternates";
-  font-size: 12px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 .navLink:hover,
@@ -32,22 +30,19 @@
   color: #ff9f45;
 }
 
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.profile {
+  display: none;
 }
 
 .signUpButton {
-  min-width: 62px;
-  height: 24px;
-  padding: 0 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   border: none;
-  border-radius: 8px;
-  background-color: #ffb36b;
-  color: #111111;
-  font-size: 10px;
-  transition: background-color 180ms ease;
+  border-radius: 10px;
+  background: #ffb36c;
+  font-family: "Montserrat Alternates";
 }
 
 .signUpButton:hover,
@@ -55,62 +50,62 @@
   background-color: #f7a34f;
 }
 
-.profileButton {
-  width: 27px;
-  height: 27px;
+.profileIcon {
   border: none;
-  border-radius: 50%;
-  background-color: #d4dce7;
-  position: relative;
-}
-
-.profileIcon::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 7px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  transform: translateX(-50%);
-  background-color: #5d6f86;
-}
-
-.profileIcon::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 6px;
-  width: 15px;
-  height: 8px;
-  border-radius: 10px 10px 4px 4px;
-  transform: translateX(-50%);
-  background-color: #5d6f86;
-}
-
-@media screen and (min-width: 768px) {
-  .nav {
-    display: flex;
-  }
-}
-
-.container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
-  max-width: 333px;
+  fill: #ffffff;
 }
 
 @media screen and (min-width: 768px) {
   .headerContainer {
     height: 70px;
   }
+  .logo {
+    width: 54px;
+    height: 36px;
+  }
+  .nav {
+    gap: 45px;
+    display: flex;
+  }
+  .navLink {
+    font-size: 10px;
+  }
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+  .signUpButton {
+    padding: 8px 16px;
+  }
+  .profileIcon {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
   .headerContainer {
     height: 80px;
+  }
+  .logo {
+    width: 82px;
+    height: 56px;
+  }
+  .nav {
+    gap: 42px;
+  }
+  .navLink {
+    font-size: 12px;
+  }
+  .profile {
+    gap: 27px;
+  }
+  .signUpButton {
+    padding: 10px 20px;
+  }
+  .profileIcon {
+    width: 50px;
+    height: 50px;
   }
 }

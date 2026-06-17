@@ -1,5 +1,6 @@
 import styles from "./Header.module.css";
 import headerLogo from "./img/logo.svg";
+import userLogo from "./img/userLogo.svg";
 
 export const Header = () => {
   return (
@@ -19,18 +20,11 @@ export const Header = () => {
             Menu
           </a>
         </nav>
-        <div className={styles.actions}>
+        <div className={styles.profile}>
           <button className={styles.signUpButton} type="button">
             Sign Up
           </button>
-
-          <button
-            className={styles.profileButton}
-            type="button"
-            aria-label="User profile"
-          >
-            <span className={styles.profileIcon}></span>
-          </button>
+            <img className={styles.profileIcon} src={userLogo} alt="User" />
         </div>
       </div>
     </header>
