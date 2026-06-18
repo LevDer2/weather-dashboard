@@ -1,14 +1,14 @@
 .weatherSection {
-  padding-top: 34px;
-  padding-bottom: 32px;
+  padding-top: 35px;
+  padding-bottom: 60px;
   background-color: #ffffff;
 }
 
 .list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 30px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -16,15 +16,25 @@
 
 @media screen and (min-width: 768px) {
   .list {
-    flex-direction: row;
+    grid-template-columns: repeat(2, 293px);
     justify-content: center;
-    align-items: stretch;
-    gap: 32px;
   }
+  .weatherSection {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #ffffff;
+}
 }
 
 @media screen and (min-width: 1200px) {
   .list {
-    gap: 64px;
+    grid-template-columns: repeat(3, 293px);
+    gap: 30px 90px;
+    justify-content: center;
   }
+  .weatherSection {
+  padding-top: 60px;
+  padding-bottom: 80px;
+  background-color: #ffffff;
+}
 }

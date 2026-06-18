@@ -22,6 +22,31 @@ const news = [
     title: 'Petting dogs gives health benefit, even if they are not yours',
     variant: 'bulldog',
   },
+    {
+    id: 4,
+    title: 'Petting dogs gives health benefit, even if they are not yours',
+    variant: 'bulldog',
+  },
+    {
+    id: 4,
+    title: 'Petting dogs gives health benefit, even if they are not yours',
+    variant: 'bulldog',
+  },
+    {
+    id: 4,
+    title: 'Petting dogs gives health benefit, even if they are not yours',
+    variant: 'bulldog',
+  },
+    {
+    id: 4,
+    title: 'Petting dogs gives health benefit, even if they are not yours',
+    variant: 'bulldog',
+  },
+    {
+    id: 4,
+    title: 'Petting dogs gives health benefit, even if they are not yours',
+    variant: 'bulldog',
+  },
 ];
 
 export const NewsList = () => {

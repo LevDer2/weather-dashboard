@@ -68,7 +68,7 @@
     display: flex;
   }
   .navLink {
-    font-size: 10px;
+    font-size: 11px;
   }
   .profile {
     display: flex;
@@ -96,7 +96,7 @@
     gap: 42px;
   }
   .navLink {
-    font-size: 12px;
+    font-size: 14px;
   }
   .profile {
     gap: 27px;

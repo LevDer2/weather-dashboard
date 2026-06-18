@@ -1,12 +1,16 @@
-import { Header } from './components/Header/Header';
-import { Hero } from './components/Hero/Hero';
-import { WeatherList } from './components/WeatherList/WeatherList';
-import { News } from './components/News/News';
-import { SearchPhotos } from './components/SearchPhotos/SearchPhotos';
-import { Footer } from './components/Footer/Footer';
-import { Modal } from './components/Modal/Modal';
+import { Header } from "./components/Header/Header";
+import { Hero } from "./components/Hero/Hero";
+import { WeatherList } from "./components/WeatherList/WeatherList";
+import { News } from "./components/News/News";
+import { SearchPhotos } from "./components/SearchPhotos/SearchPhotos";
+import { Footer } from "./components/Footer/Footer";
+import { Modal } from "./components/Modal/Modal";
+import { weatherApi } from "./weatherApi";
 
 function App() {
+  // weatherApi().then((res) => {
+  //   console.log(res);
+  // });
   return (
     <>
       <Header />
