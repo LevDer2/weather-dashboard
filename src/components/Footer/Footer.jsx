@@ -1,38 +1,71 @@
-import styles from './Footer.module.css';
+import styles from "./Footer.module.css";
+import headerLogo from "../Header/img/logo.svg";
+import instagram from "./img/instagram.svg";
+import facebook from "./img/facebook.svg";
+import whatsapp from "./img/whatsapp.svg";
 
 export const Footer = () => {
   return (
-    <footer id="contacts" className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={`container ${styles.footerContainer}`}>
-        <a href="/" className={styles.logo} aria-label="24/7 forecast home">
-          <span className={styles.logoMain}>24/7</span>
-          <span className={styles.logoSub}>forecast</span>
+        <a href="/" className={styles.logoLink}>
+          <img className={styles.logo} src={headerLogo} alt="24/7 forecast" />
         </a>
 
         <address className={styles.address}>
-          <span className={styles.addressTitle}>Address</span>
-          <span>Svobody str. 35</span>
-          <span>Kyiv</span>
-          <span>Ukraine</span>
+          <h2 className={styles.addressTitle}>Address</h2>
+
+          <p className={styles.addressText}>
+            Svobody str. 35
+            <br />
+            Kyiv
+            <br />
+            Ukraine
+          </p>
         </address>
 
         <div className={styles.contacts}>
-          <p className={styles.contactsTitle}>Contact us</p>
-
+          <h2 className={styles.contactsTitle}>Contact us</h2>
           <ul className={styles.socialList}>
-            <li>
-              <a className={`${styles.socialLink} ${styles.instagram}`} href="/" aria-label="Instagram">
-                I
+            <li className={styles.socialItem}>
+              <a
+                className={styles.socialLink}
+                href="https://www.instagram.com/"
+                aria-label="Instagram"
+              >
+                <img
+                  className={styles.socialIcon}
+                  src={instagram}
+                  alt="Instagram"
+                />
               </a>
             </li>
-            <li>
-              <a className={`${styles.socialLink} ${styles.facebook}`} href="/" aria-label="Facebook">
-                f
+
+            <li className={styles.socialItem}>
+              <a
+                className={styles.socialLink}
+                href="https://www.facebook.com/login/?locale=en_GB"
+                aria-label="Facebook"
+              >
+                <img
+                  className={styles.socialIcon}
+                  src={facebook}
+                  alt="Facebook"
+                />
               </a>
             </li>
-            <li>
-              <a className={`${styles.socialLink} ${styles.whatsapp}`} href="/" aria-label="WhatsApp">
-                w
+
+            <li className={styles.socialItem}>
+              <a
+                className={styles.socialLink}
+                href="https://www.whatsapp.com/?lang=en"
+                aria-label="WhatsApp"
+              >
+                <img
+                  className={styles.socialIcon}
+                  src={whatsapp}
+                  alt="WhatsApp"
+                />
               </a>
             </li>
           </ul>

@@ -1,73 +1,61 @@
 .photos {
-  padding-top: 8px;
+  padding-top: 35px;
   padding-bottom: 45px;
   background-color: #ffffff;
 }
 
 .title {
-  margin: 0 0 26px;
-  font-size: 15px;
-  font-weight: 400;
+  margin: 0 0 30px;
+  color: #000;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
 }
 
-.list {
-  min-height: 122px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.swiper {
+  width: 100%;
+  padding-bottom: 45px;
+}
+
+.slide {
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
-.photo {
-  width: 86px;
-  height: 64px;
-  margin-left: -10px;
-  margin-right: -10px;
-  border-radius: 2px;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
-}
-
-.activePhoto {
-  width: 180px;
-  height: 110px;
-  z-index: 2;
-}
-
-.photoOne {
-  background-image: linear-gradient(135deg, #44515a, #b8c8cf);
-}
-
-.photoTwo {
-  background-image: linear-gradient(135deg, #0d596b, #57b8be);
-}
-
-.photoThree {
-  background-image:
-    radial-gradient(circle at 45% 80%, #34521f 0 16%, transparent 17%),
-    linear-gradient(135deg, #a7c3d6 0 30%, #e2d6c0 31% 48%, #536c3b 49% 100%);
-}
-
-.photoFour {
-  background-image: linear-gradient(135deg, #283320, #8a8b54);
-}
-
-.photoFive {
-  background-image: linear-gradient(135deg, #3d2e26, #c45c32, #f5a24a);
+.image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 @media screen and (min-width: 768px) {
-  .photo {
-    width: 105px;
-    height: 72px;
+  .image {
+    height: 220px;
   }
+}
 
-  .activePhoto {
-    width: 250px;
-    height: 140px;
+@media screen and (min-width: 1200px) {
+  .image {
+    height: 240px;
   }
+}
+
+/* Кнопки вперед/назад */
+:global(.swiper-button-prev),
+:global(.swiper-button-next) {
+  color: #ffb36b;
+}
+
+/* Звичайні точки */
+:global(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  background-color: #c7c7c7;
+  opacity: 1;
+}
+
+/* Активна точка */
+:global(.swiper-pagination-bullet-active) {
+  background-color: #ffb36b;
 }

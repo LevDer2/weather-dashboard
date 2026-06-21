@@ -28,7 +28,7 @@ export const Modal = () => {
         </form>
 
         <p className={styles.loginText}>
-          Already have account? <a className={styles.loginLink} href="/">Log in</a>
+          Already have an account? <a className={styles.loginLink} href="/">Log in</a>
         </p>
       </div>
     </div>
