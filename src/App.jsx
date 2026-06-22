@@ -6,14 +6,31 @@ import { SearchPhotos } from "./components/SearchPhotos/SearchPhotos";
 import { Footer } from "./components/Footer/Footer";
 import { Modal } from "./components/Modal/Modal";
 import { weatherApi } from "./weatherApi";
+import { useState } from "react";
+import { newsApi } from "./newsApi";
 
 function App() {
   // weatherApi().then((res) => {
   //   console.log(res);
   // });
+  // newsApi().then((res) => {
+  //   console.log(res);
+  // })
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [name, setName] = useState("");
+
+  const handleModalToggle = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const createName = (name) => {
+    setName(name);
+  };
+
   return (
     <>
-      <Header />
+      <Header handleModalToggle={handleModalToggle} name={name} />
 
       <main>
         <Hero />
@@ -24,9 +41,10 @@ function App() {
 
       <Footer />
 
-      {/* Modal поки без логіки відкриття/закриття.
-          {isModalOpen && <Modal />} */}
-      <Modal />
+      {/* Modal поки без логіки відкриття/закриття. {isModalOpen && <Modal />} */}
+      {isModalOpen && (
+        <Modal handleModalToggle={handleModalToggle} createName={createName} />
+      )}
     </>
   );
 }

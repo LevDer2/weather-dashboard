@@ -29,34 +29,6 @@ const weatherItems = [
     weekday: 'Friday',
     temperature: '22°C',
   },
-  {
-    id: 3,
-    city: 'Prague',
-    country: 'Czech Republic',
-    time: '14:00',
-    date: '13.10.2023',
-    weekday: 'Friday',
-    temperature: '22°C',
-  },
-  {
-    id: 3,
-    city: 'Prague',
-    country: 'Czech Republic',
-    time: '14:00',
-    date: '13.10.2023',
-    weekday: 'Friday',
-    temperature: '22°C',
-  },
-  {
-    id: 3,
-    city: 'Prague',
-    country: 'Czech Republic',
-    time: '14:00',
-    date: '13.10.2023',
-    weekday: 'Friday',
-    temperature: '22°C',
-  },
-  
 ];
 
 export const WeatherList = () => {

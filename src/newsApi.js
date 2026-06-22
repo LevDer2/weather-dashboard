@@ -2,7 +2,7 @@
 
 export const newsApi = (
   apiKey = "612d607db4f84b48955738deb759c762",
-  language = ""
+  language = "ua"
 ) => {
   return fetch(
     `https://newsapi.org/v2/everything?q=weather&language=${language}&apiKey=${apiKey}`,

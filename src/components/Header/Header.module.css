@@ -1,4 +1,6 @@
 .header {
+  position: relative;
+  z-index: 10;
   background-color: #ffffff;
 }
 
@@ -10,8 +12,8 @@
 }
 
 .logo {
-  width: 34px;
-  height: 22px;
+  width: 40px;
+  height: 40px;
 }
 
 .nav {
@@ -23,6 +25,7 @@
   color: #000;
   font-family: "Montserrat Alternates";
   font-weight: 500;
+  text-decoration: none;
 }
 
 .navLink:hover,
@@ -43,6 +46,7 @@
   border-radius: 10px;
   background: #ffb36c;
   font-family: "Montserrat Alternates";
+  cursor: pointer;
 }
 
 .signUpButton:hover,
@@ -52,35 +56,152 @@
 
 .profileIcon {
   border: none;
-  fill: #ffffff;
+}
+
+/* Mobile menu button */
+
+.mobileMenuButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: #000;
+  font-family: "Montserrat Alternates";
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.menuArrow {
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transform: rotate(45deg);
+  transition: transform 200ms ease;
+}
+
+.menuArrowOpen {
+  transform: rotate(-45deg);
+}
+
+/* Mobile menu */
+
+.mobileMenu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  background: #E6E6E6;
+  transition:
+    opacity 200ms ease,
+    visibility 200ms ease;
+}
+
+.mobileMenuOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobileMenuContainer {
+  padding-top: 52px;
+  padding-bottom: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.mobileNavLink {
+  color: #000;
+  font-family: "Montserrat Alternates";
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.mobileNavLink:hover,
+.mobileNavLink:focus {
+  color: #ff9f45;
+}
+
+.mobileProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.mobileProfileIcon {
+  width: 60px;
+  height: 60px;
+}
+
+.mobileSignUpButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffb36c;
+  color: #000;
+  font-family: "Montserrat Alternates";
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.mobileSignUpButton:hover,
+.mobileSignUpButton:focus {
+  background-color: #f7a34f;
 }
 
 @media screen and (min-width: 768px) {
   .headerContainer {
     height: 70px;
   }
+
   .logo {
     width: 54px;
     height: 36px;
   }
+
   .nav {
     gap: 45px;
     display: flex;
   }
+
   .navLink {
-    font-size: 11px;
+    font-size: 12px;
   }
+
   .profile {
     display: flex;
     align-items: center;
     gap: 25px;
   }
+
   .signUpButton {
     padding: 8px 16px;
   }
+
   .profileIcon {
     width: 40px;
     height: 40px;
+  }
+
+  .mobileMenuButton,
+  .mobileMenu {
+    display: none;
   }
 }
 
@@ -88,22 +209,28 @@
   .headerContainer {
     height: 80px;
   }
+
   .logo {
     width: 82px;
     height: 56px;
   }
+
   .nav {
     gap: 42px;
   }
+
   .navLink {
     font-size: 14px;
   }
+
   .profile {
     gap: 27px;
   }
+
   .signUpButton {
     padding: 10px 20px;
   }
+
   .profileIcon {
     width: 50px;
     height: 50px;

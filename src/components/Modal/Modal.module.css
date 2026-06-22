@@ -9,7 +9,56 @@
   font-family: "Montserrat Alternates";
 }
 
+.closeButton {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+
+  color: #111111;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 400;
+
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  background-color: #f1f1f1;
+  color: #ff8f2f;
+}
+
+@media screen and (min-width: 768px) {
+  .closeButton {
+    top: 16px;
+    right: 18px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .closeButton {
+    top: 20px;
+    right: 24px;
+  }
+}
+
 .modal {
+  position: relative;
   padding: 20px;
   border-radius: 25px;
   background-color: #ffffff;
