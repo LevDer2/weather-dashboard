@@ -97,7 +97,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  background: #E6E6E6;
+  background: #e6e6e6;
   transition:
     opacity 200ms ease,
     visibility 200ms ease;
@@ -163,6 +163,12 @@
 .mobileSignUpButton:hover,
 .mobileSignUpButton:focus {
   background-color: #f7a34f;
+}
+
+.userNameRegister {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
 }
 
 @media screen and (min-width: 768px) {

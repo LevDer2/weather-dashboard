@@ -6,7 +6,7 @@ import { SearchPhotos } from "./components/SearchPhotos/SearchPhotos";
 import { Footer } from "./components/Footer/Footer";
 import { Modal } from "./components/Modal/Modal";
 import { weatherApi } from "./weatherApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { newsApi } from "./newsApi";
 
 function App() {
@@ -18,7 +18,15 @@ function App() {
   // })
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [location, setLocation] = useState("");
   const [name, setName] = useState("");
+  const [locationsList, setLocationsList] = useState([]);
+
+  const handleDeleteLocation = (id) => {
+    setLocationsList((prevLocations) =>
+      prevLocations.filter((location) => location.id !== id),
+    );
+  };
 
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
@@ -28,13 +36,29 @@ function App() {
     setName(name);
   };
 
+  const createLocation = (locat) => {
+    setLocation(locat);
+  };
+
+  useEffect(() => {
+    if (location === "") {
+      return;
+    } else {
+      weatherApi(location).then((res) => {
+        setLocationsList((prevLocations) => [...prevLocations, res]);
+        console.log(res);
+        console.log(locationsList);
+      });
+    }
+  }, [location]);
+
   return (
     <>
       <Header handleModalToggle={handleModalToggle} name={name} />
 
       <main>
-        <Hero />
-        <WeatherList />
+        <Hero createLocation={createLocation} />
+        <WeatherList locationsList={locationsList} name={name} handleDeleteLocation={handleDeleteLocation}/>
         <News />
         <SearchPhotos />
       </main>

@@ -3,29 +3,29 @@ import fovorite from "./img/fovorite.svg";
 import update from "./img/update.svg";
 import delet from "./img/delete.svg";
 
-export const WeatherItem = ({ weather }) => {
-  const { city, country, time, date, weekday, temperature } = weather;
+export const WeatherItem = ({ weather, name, handleDeleteLocation }) => {
+  const iconCode = weather.weather[0].icon;
+  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
   return (
     <li className={styles.card}>
       <div className={styles.locationRow}>
-        <p className={styles.city}>{city}</p>
-        <p className={styles.country}>{country}</p>
+        <p className={styles.city}>{weather.name}</p>
+        <p className={styles.country}>{weather.sys.country}</p>
       </div>
 
-      <p className={styles.time}>{time}</p>
-
-      {/* <div className={styles.dateBadge}>
-        {date} | {weekday}
-      </div> */}
+      <p className={styles.time}>14:00</p>
 
       <div className={styles.forecast}>
         <button type="button" className={styles.hourlyForecast}>
           Hourly forecast
         </button>
-        <button type="button" className={styles.weeklyForecast}>
-          Weekly forecast
-        </button>
+
+        {name && (
+          <button type="button" className={styles.weeklyForecast}>
+            Weekly forecast
+          </button>
+        )}
       </div>
 
       <div className={styles.exactlyTime}>
@@ -33,34 +33,27 @@ export const WeatherItem = ({ weather }) => {
         <p className={styles.day}>Friday</p>
       </div>
 
-      <div className={styles.sun} aria-label="Sunny weather icon">
-        <span className={styles.sunCore}></span>
-      </div>
+      <img src={iconUrl} alt={weather.weather[0].description} />
 
-      <p className={styles.temperature}>{temperature}</p>
+      <p className={styles.temperature}>{Math.round(weather.main.temp)}°C</p>
 
       <div className={styles.actions}>
-        <button
-          className={styles.iconButton}
-          type="button"
-          aria-label="Refresh weather"
-        >
+        <button className={styles.iconButton} type="button">
           <img className={styles.iconRefresh} src={update} alt="Refresh" />
         </button>
-        <button
-          className={styles.favoriteButton}
-          type="button"
-          aria-label="Add to favorite"
-        >
+
+        <button className={styles.favoriteButton} type="button">
           <img className={styles.iconFavorite} src={fovorite} alt="Favorite" />
         </button>
+
         <button className={styles.moreButton} type="button">
           See more
         </button>
+
         <button
           className={styles.iconButton}
           type="button"
-          aria-label="Delete city"
+          onClick={() => handleDeleteLocation(weather.id)}
         >
           <img className={styles.iconDelete} src={delet} alt="Delete" />
         </button>

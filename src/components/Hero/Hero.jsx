@@ -1,6 +1,16 @@
-import styles from './Hero.module.css';
+import React, { useRef, useState } from "react";
+import styles from "./Hero.module.css";
 
-export const Hero = () => {
+export const Hero = ({ createLocation }) => {
+  const [locationValue, setLocationValue] = useState("");
+  const handleSubmitLocation = (event) => {
+    event.preventDefault();
+    if (locationValue === "") {
+      return;
+    }
+    setLocationValue("");
+    createLocation(locationValue);
+  };
   return (
     <section id="hero" className={styles.hero}>
       <div className={`container ${styles.heroContainer}`}>
@@ -8,7 +18,8 @@ export const Hero = () => {
 
         <div className={styles.infoWrapper}>
           <p className={styles.description}>
-            Create your personal list of favorite cities and always be aware of the weather.
+            Create your personal list of favorite cities and always be aware of
+            the weather.
           </p>
 
           <div className={styles.dateBox}>
@@ -17,12 +28,14 @@ export const Hero = () => {
           </div>
         </div>
 
-        <form className={styles.searchForm}>
+        <form className={styles.searchForm} onSubmit={handleSubmitLocation}>
           <input
             className={styles.searchInput}
             type="text"
             name="search"
             placeholder="Search location..."
+            value={locationValue}
+            onChange={(evt) => setLocationValue(evt.target.value)}
           />
           <button className={styles.searchButton} type="submit">
             <span className={styles.searchIcon}></span>

@@ -32,7 +32,7 @@ export const Header = ({ handleModalToggle, name }) => {
 
         <div className={styles.profile}>
           {name ? (
-            <p className={styles.navLink}>Hi, {name}!</p>
+            <p className={styles.userNameRegister}>Hi, {name}!</p>
           ) : (
             <button
               className={styles.signUpButton}
@@ -99,13 +99,17 @@ export const Header = ({ handleModalToggle, name }) => {
               alt="User"
             />
 
-            <button
-              className={styles.mobileSignUpButton}
-              type="button"
-              onClick={handleModalToggle}
-            >
-              Sign Up
-            </button>
+            {name ? (
+              <p className={styles.userNameRegister}>Hi, {name}!</p>
+            ) : (
+              <button
+                className={styles.mobileSignUpButton}
+                type="button"
+                onClick={handleModalToggle}
+              >
+                Sign Up
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -63,6 +63,7 @@ export const Modal = ({ handleModalToggle, createName }) => {
               type="text"
               name="username"
               placeholder="Username"
+              required
             />
           </label>
 
@@ -77,6 +78,7 @@ export const Modal = ({ handleModalToggle, createName }) => {
               type="email"
               name="email"
               placeholder="E-Mail"
+              required
             />
           </label>
 
@@ -87,6 +89,7 @@ export const Modal = ({ handleModalToggle, createName }) => {
               type="password"
               name="password"
               placeholder="Password"
+              required
             />
           </label>
 

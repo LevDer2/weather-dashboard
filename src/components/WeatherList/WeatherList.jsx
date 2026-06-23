@@ -1,43 +1,13 @@
-import { WeatherItem } from '../WeatherItem/WeatherItem';
-import styles from './WeatherList.module.css';
+import { WeatherItem } from "../WeatherItem/WeatherItem";
+import styles from "./WeatherList.module.css";
 
-const weatherItems = [
-  {
-    id: 1,
-    city: 'Prague',
-    country: 'Czech Republic',
-    time: '14:00',
-    date: '13.10.2023',
-    weekday: 'Friday',
-    temperature: '22°C',
-  },
-  {
-    id: 2,
-    city: 'Prague',
-    country: 'Czech Republic',
-    time: '14:00',
-    date: '13.10.2023',
-    weekday: 'Friday',
-    temperature: '22°C',
-  },
-  {
-    id: 3,
-    city: 'Prague',
-    country: 'Czech Republic',
-    time: '14:00',
-    date: '13.10.2023',
-    weekday: 'Friday',
-    temperature: '22°C',
-  },
-];
-
-export const WeatherList = () => {
+export const WeatherList = ({ locationsList, name, handleDeleteLocation }) => {
   return (
     <section className={styles.weatherSection}>
       <div className="container">
         <ul className={styles.list}>
-          {weatherItems.map((item) => (
-            <WeatherItem key={item.id} weather={item} />
+          {locationsList.map((item) => (
+            <WeatherItem key={item.id} weather={item} name={name} handleDeleteLocation={handleDeleteLocation}/>
           ))}
         </ul>
       </div>
