@@ -3,7 +3,12 @@ import fovorite from "./img/fovorite.svg";
 import update from "./img/update.svg";
 import delet from "./img/delete.svg";
 
-export const WeatherItem = ({ weather, name, handleDeleteLocation }) => {
+export const WeatherItem = ({
+  weather,
+  name,
+  handleDeleteLocation,
+  handleShowMore,
+}) => {
   const iconCode = weather.weather[0].icon;
   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
@@ -46,7 +51,11 @@ export const WeatherItem = ({ weather, name, handleDeleteLocation }) => {
           <img className={styles.iconFavorite} src={fovorite} alt="Favorite" />
         </button>
 
-        <button className={styles.moreButton} type="button">
+        <button
+          className={styles.moreButton}
+          type="button"
+          onClick={() => handleShowMore(weather)}
+        >
           See more
         </button>
 

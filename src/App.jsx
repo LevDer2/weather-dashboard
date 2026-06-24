@@ -1,32 +1,25 @@
 import { Header } from "./components/Header/Header";
 import { Hero } from "./components/Hero/Hero";
 import { WeatherList } from "./components/WeatherList/WeatherList";
+import { WeatherMoreSection } from "./components/WeatherMoreSection/WeatherMoreSection";
 import { News } from "./components/News/News";
 import { SearchPhotos } from "./components/SearchPhotos/SearchPhotos";
 import { Footer } from "./components/Footer/Footer";
 import { Modal } from "./components/Modal/Modal";
+
 import { weatherApi } from "./weatherApi";
+import { forecastApi } from "./forecastApi";
+
 import { useEffect, useState } from "react";
-import { newsApi } from "./newsApi";
 
 function App() {
-  // weatherApi().then((res) => {
-  //   console.log(res);
-  // });
-  // newsApi().then((res) => {
-  //   console.log(res);
-  // })
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [location, setLocation] = useState("");
   const [name, setName] = useState("");
   const [locationsList, setLocationsList] = useState([]);
 
-  const handleDeleteLocation = (id) => {
-    setLocationsList((prevLocations) =>
-      prevLocations.filter((location) => location.id !== id),
-    );
-  };
+  const [selectedWeather, setSelectedWeather] = useState(null);
+  const [selectedForecast, setSelectedForecast] = useState(null);
 
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
@@ -40,16 +33,36 @@ function App() {
     setLocation(locat);
   };
 
+  const handleDeleteLocation = (id) => {
+    setLocationsList((prevLocations) =>
+      prevLocations.filter((location) => location.id !== id),
+    );
+
+    if (selectedWeather?.id === id) {
+      setSelectedWeather(null);
+      setSelectedForecast(null);
+    }
+  };
+
+  const handleShowMore = (weather) => {
+    setSelectedWeather(weather);
+
+    forecastApi(weather.name).then((res) => {
+      setSelectedForecast(res);
+      console.log(res);
+      
+    });
+  };
+
   useEffect(() => {
     if (location === "") {
       return;
-    } else {
-      weatherApi(location).then((res) => {
-        setLocationsList((prevLocations) => [...prevLocations, res]);
-        console.log(res);
-        console.log(locationsList);
-      });
     }
+
+    weatherApi(location).then((res) => {
+      setLocationsList((prevLocations) => [...prevLocations, res]);
+      console.log(res);
+    });
   }, [location]);
 
   return (
@@ -58,14 +71,25 @@ function App() {
 
       <main>
         <Hero createLocation={createLocation} />
-        <WeatherList locationsList={locationsList} name={name} handleDeleteLocation={handleDeleteLocation}/>
+
+        <WeatherList
+          locationsList={locationsList}
+          name={name}
+          handleDeleteLocation={handleDeleteLocation}
+          handleShowMore={handleShowMore}
+        />
+
+        <WeatherMoreSection
+          weather={selectedWeather}
+          forecast={selectedForecast}
+        />
+
         <News />
         <SearchPhotos />
       </main>
 
       <Footer />
 
-      {/* Modal поки без логіки відкриття/закриття. {isModalOpen && <Modal />} */}
       {isModalOpen && (
         <Modal handleModalToggle={handleModalToggle} createName={createName} />
       )}
