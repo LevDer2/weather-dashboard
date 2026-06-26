@@ -11,6 +11,7 @@ export const WeatherItem = ({
   name,
   handleDeleteLocation,
   handleShowMore,
+  handleRefreshLocation,
 }) => {
   const iconCode = weather.weather[0].icon;
   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
@@ -48,7 +49,7 @@ export const WeatherItem = ({
       <div className={styles.actions}>
         <button className={styles.iconButton} type="button">
           {/* <img className={styles.iconRefresh} src={update} alt="Refresh" /> */}
-          <FiRefreshCw className={styles.iconRefresh} />
+          <FiRefreshCw className={styles.iconRefresh} onClick={() => handleRefreshLocation(weather)}/>
         </button>
 
         <button className={styles.favoriteButton} type="button">

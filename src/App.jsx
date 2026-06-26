@@ -39,6 +39,7 @@ function App() {
   const [totalNews, setTotalNews] = useState(0);
   const [isNewsLoading, setIsNewsLoading] = useState(false);
 
+
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -71,6 +72,28 @@ function App() {
       setTotalNews(0);
     }
   };
+
+  const handleRefreshLocation = (weather) => {
+  weatherApi(weather.name)
+    .then((updatedWeather) => {
+      setLocationsList((prevLocations) =>
+        prevLocations.map((location) =>
+          location.id === weather.id ? updatedWeather : location,
+        ),
+      );
+
+      if (selectedWeather?.id === weather.id) {
+        setSelectedWeather(updatedWeather);
+
+        forecastApi(updatedWeather.name).then((res) => {
+          setSelectedForecast(res);
+        });
+      }
+    })
+    .catch((error) => {
+      console.log("Weather refresh error:", error);
+    });
+};
 
   const handleShowMore = (weather) => {
     setSelectedWeather(weather);
@@ -196,6 +219,7 @@ function App() {
           name={name}
           handleDeleteLocation={handleDeleteLocation}
           handleShowMore={handleShowMore}
+          handleRefreshLocation={handleRefreshLocation}
         />
 
         <WeatherMoreSection

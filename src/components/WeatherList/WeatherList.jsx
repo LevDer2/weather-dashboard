@@ -6,6 +6,7 @@ export const WeatherList = ({
   name,
   handleDeleteLocation,
   handleShowMore,
+  handleRefreshLocation
 }) => {
   return (
     <section className={styles.weatherSection}>
@@ -18,6 +19,7 @@ export const WeatherList = ({
               name={name}
               handleDeleteLocation={handleDeleteLocation}
               handleShowMore={handleShowMore}
+              handleRefreshLocation={handleRefreshLocation}
             />
           ))}
         </ul>
