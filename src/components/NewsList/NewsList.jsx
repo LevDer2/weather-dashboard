@@ -1,35 +1,68 @@
-import { NewsItem } from '../NewsItem/NewsItem';
-import styles from './NewsList.module.css';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Keyboard, Mousewheel } from "swiper/modules";
 
-const news = [
-  {
-    id: 1,
-    title: 'Rescue pups pose as ghosts in festive photo shoot',
-    variant: 'ghost',
-  },
-  {
-    id: 2,
-    title: 'Cat interrupts morning coffee on sunny Washington morning',
-    variant: 'cat',
-  },
-  {
-    id: 3,
-    title: 'New study finds dogs pay more attention to women',
-    variant: 'dogs',
-  },
-  {
-    id: 4,
-    title: 'Petting dogs gives health benefit, even if they are not yours',
-    variant: 'bulldog',
-  },
-];
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/mousewheel";
 
-export const NewsList = () => {
+import { NewsItem } from "../NewsItem/NewsItem";
+import styles from "./NewsList.module.css";
+
+export const NewsList = ({
+  news,
+  onLoadMoreNews,
+  isNewsLoading,
+  hasMoreNews,
+}) => {
+  if (!news.length) {
+    return null;
+  }
+
   return (
-    <ul className={styles.list}>
+    <Swiper
+      className={styles.swiper}
+      modules={[Navigation, Pagination, Keyboard, Mousewheel]}
+      slidesPerView={1}
+      spaceBetween={20}
+      navigation={true}
+      keyboard={{ enabled: true }}
+      mousewheel={{
+        enabled: true,
+        releaseOnEdges: true,
+      }}
+      pagination={{
+        clickable: true,
+        dynamicBullets: true,
+        dynamicMainBullets: 3,
+      }}
+      breakpoints={{
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 24,
+        },
+        1200: {
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+      }}
+      onReachEnd={() => {
+        if (hasMoreNews && !isNewsLoading) {
+          onLoadMoreNews();
+        }
+      }}
+    >
       {news.map((item) => (
-        <NewsItem key={item.id} item={item} />
+        <SwiperSlide key={item.url} className={styles.slide}>
+          <NewsItem item={item} />
+        </SwiperSlide>
       ))}
-    </ul>
+
+      {isNewsLoading && (
+        <SwiperSlide className={styles.slide}>
+          <div className={styles.loadingSlide}>Loading news...</div>
+        </SwiperSlide>
+      )}
+    </Swiper>
   );
 };

@@ -1,12 +1,12 @@
-// TODO: Коли місто користувача прийшло на сервер то знайти спосіб як забрати мову та вставити її в language
-
 export const newsApi = (
+  location,
+  page = 1,
+  perPage = 12,
   apiKey = "612d607db4f84b48955738deb759c762",
-  language = "ua"
 ) => {
   return fetch(
-    `https://newsapi.org/v2/everything?q=weather&language=${language}&apiKey=${apiKey}`,
+    `https://newsapi.org/v2/everything?q=${encodeURIComponent(
+      location,
+    )}&apiKey=${apiKey}&page=${page}&pageSize=${perPage}`,
   ).then((res) => res.json());
 };
-
-

@@ -14,33 +14,6 @@
   border-radius: 10px;
 }
 
-/* .ghost {
-  background-image:
-    radial-gradient(circle at 45% 48%, rgba(255, 255, 255, 0.95) 0 26%, transparent 27%),
-    radial-gradient(circle at 52% 55%, #f4f4f4 0 30%, transparent 31%),
-    linear-gradient(135deg, #d8e7ea, #f7f1e8);
-}
-
-.cat {
-  background-image:
-    radial-gradient(circle at 34% 46%, rgba(75, 38, 30, 0.9) 0 16%, transparent 17%),
-    linear-gradient(120deg, #995f47, #f4e0c8 48%, #ffffff);
-}
-
-.dogs {
-  background-image:
-    radial-gradient(circle at 35% 55%, #dca458 0 18%, transparent 19%),
-    radial-gradient(circle at 61% 48%, #d08b42 0 20%, transparent 21%),
-    linear-gradient(135deg, #cce7ff, #ffd9a1);
-}
-
-.bulldog {
-  background-image:
-    radial-gradient(circle at 50% 54%, #d0a15f 0 28%, transparent 29%),
-    radial-gradient(circle at 46% 50%, #6d4b32 0 6%, transparent 7%),
-    linear-gradient(135deg, #f0d7af, #8cc0a3);
-} */
-
 .title {
   /* margin: 0;
   font-size: 10px;

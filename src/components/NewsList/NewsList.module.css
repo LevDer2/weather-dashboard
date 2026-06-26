@@ -7,6 +7,29 @@
   list-style: none;
 }
 
+.swiper {
+  width: 100%;
+  padding-bottom: 45px;
+}
+
+.slide {
+  height: auto;
+}
+
+:global(.swiper-button-prev),
+:global(.swiper-button-next) {
+  color: #ffb36c;
+}
+
+:global(.swiper-pagination-bullet) {
+  background-color: #c7c7c7;
+  opacity: 1;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background-color: #ffb36c;
+}
+
 @media screen and (min-width: 768px) {
   .list {
     grid-template-columns: repeat(2, 1fr);
@@ -17,4 +40,41 @@
   .list {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+.swiper {
+  width: 100%;
+  padding-bottom: 45px;
+}
+
+.slide {
+  height: auto;
+}
+
+.loadingSlide {
+  height: 180px;
+  border-radius: 8px;
+  background-color: #e8e8e8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Montserrat Alternates";
+  font-size: 16px;
+  font-weight: 500;
+}
+
+:global(.swiper-button-prev),
+:global(.swiper-button-next) {
+  color: #ffb36c;
+}
+
+:global(.swiper-pagination-bullet) {
+  background-color: #c7c7c7;
+  opacity: 1;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background-color: #ffb36c;
 }

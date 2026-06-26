@@ -1,18 +1,29 @@
 import { NewsList } from "../NewsList/NewsList";
 import styles from "./News.module.css";
 
-export const News = () => {
+export const News = ({
+  news,
+  locationName,
+  onLoadMoreNews,
+  isNewsLoading,
+  hasMoreNews,
+}) => {
   return (
     <section className={styles.news}>
       <div className="container">
         <h2 className={styles.title}>
-          The local news at your choosen location: Name of Location
+          The local news at your choosen location: {locationName}
         </h2>
-        <NewsList />
+        <NewsList
+          news={news}
+          onLoadMoreNews={onLoadMoreNews}
+          isNewsLoading={isNewsLoading}
+          hasMoreNews={hasMoreNews}
+        />
 
-        <button className={styles.button} type="button">
+        {/* <button className={styles.button} type="button">
           See more
-        </button>
+        </button> */}
       </div>
     </section>
   );
