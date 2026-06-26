@@ -19,7 +19,9 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [location, setLocation] = useState("");
   const [name, setName] = useState("");
-  const [locationsList, setLocationsList] = useState([]);
+  const [locationsList, setLocationsList] = useState(
+    JSON.parse(localStorage.getItem("locationsList")) || [],
+  );
   const [selectedWeather, setSelectedWeather] = useState(null);
   const [selectedForecast, setSelectedForecast] = useState(null);
 
@@ -57,6 +59,16 @@ function App() {
     if (selectedWeather?.id === id) {
       setSelectedWeather(null);
       setSelectedForecast(null);
+
+      setImageQuery("");
+      setSelectedImages([]);
+      setImagePage(1);
+      setTotalImages(0);
+
+      setNewsQuery("");
+      setSelectedNews([]);
+      setNewsPage(1);
+      setTotalNews(0);
     }
   };
 
@@ -156,9 +168,21 @@ function App() {
     }
 
     weatherApi(location).then((res) => {
-      setLocationsList((prevLocations) => [...prevLocations, res]);
+      setLocationsList((prevLocations) => {
+        const isAlreadyAdded = prevLocations.some((item) => item.id === res.id);
+
+        if (isAlreadyAdded) {
+          return prevLocations;
+        }
+
+        return [...prevLocations, res];
+      });
     });
   }, [location]);
+
+  useEffect(() => {
+    localStorage.setItem("locationsList", JSON.stringify(locationsList));
+  }, [locationsList]);
 
   return (
     <>
@@ -179,20 +203,25 @@ function App() {
           forecast={selectedForecast}
         />
 
-        <News
-          news={selectedNews}
-          locationName={newsQuery}
-          onLoadMoreNews={handleLoadMoreNews}
-          isNewsLoading={isNewsLoading}
-          hasMoreNews={selectedNews.length < totalNews}
-        />
-        <SearchPhotos
-          images={selectedImages}
-          locationName={imageQuery}
-          onLoadMoreImages={handleLoadMoreImages}
-          isImagesLoading={isImagesLoading}
-          hasMoreImages={selectedImages.length < totalImages}
-        />
+        {newsQuery && (
+          <News
+            news={selectedNews}
+            locationName={newsQuery}
+            onLoadMoreNews={handleLoadMoreNews}
+            isNewsLoading={isNewsLoading}
+            hasMoreNews={selectedNews.length < totalNews}
+          />
+        )}
+
+        {imageQuery && (
+          <SearchPhotos
+            images={selectedImages}
+            locationName={imageQuery}
+            onLoadMoreImages={handleLoadMoreImages}
+            isImagesLoading={isImagesLoading}
+            hasMoreImages={selectedImages.length < totalImages}
+          />
+        )}
       </main>
 
       <Footer />

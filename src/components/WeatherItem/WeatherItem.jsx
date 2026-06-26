@@ -3,6 +3,9 @@ import fovorite from "./img/fovorite.svg";
 import update from "./img/update.svg";
 import delet from "./img/delete.svg";
 
+import { FiHeart, FiRefreshCw } from "react-icons/fi";
+import { TfiTrash } from "react-icons/tfi";
+
 export const WeatherItem = ({
   weather,
   name,
@@ -44,11 +47,13 @@ export const WeatherItem = ({
 
       <div className={styles.actions}>
         <button className={styles.iconButton} type="button">
-          <img className={styles.iconRefresh} src={update} alt="Refresh" />
+          {/* <img className={styles.iconRefresh} src={update} alt="Refresh" /> */}
+          <FiRefreshCw className={styles.iconRefresh} />
         </button>
 
         <button className={styles.favoriteButton} type="button">
-          <img className={styles.iconFavorite} src={fovorite} alt="Favorite" />
+          {/* <img className={styles.iconFavorite} src={fovorite} alt="Favorite" /> */}
+          <FiHeart className={styles.iconFavorite} />
         </button>
 
         <button
@@ -64,7 +69,8 @@ export const WeatherItem = ({
           type="button"
           onClick={() => handleDeleteLocation(weather.id)}
         >
-          <img className={styles.iconDelete} src={delet} alt="Delete" />
+          {/* <img className={styles.iconDelete} src={delet} alt="Delete" /> */}
+          <TfiTrash className={styles.iconDelete} />
         </button>
       </div>
     </li>
