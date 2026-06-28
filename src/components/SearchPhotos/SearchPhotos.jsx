@@ -13,6 +13,7 @@ import "swiper/css/pagination";
 import "swiper/css/mousewheel";
 
 import styles from "./SearchPhotos.module.css";
+import { ProgressBar } from "react-loader-spinner";
 
 export const SearchPhotos = ({
   images,
@@ -83,7 +84,21 @@ export const SearchPhotos = ({
 
           {isImagesLoading && (
             <SwiperSlide className={styles.slide}>
-              <div className={styles.loadingSlide}>Loading...</div>
+              <ProgressBar
+                visible={isImagesLoading}
+                height="100"
+                width="100"
+                color="#4fa94d"
+                ariaLabel="progress-bar-loading"
+                wrapperStyle={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  margin: 0,
+                  margin: "auto",
+                }}
+                wrapperClass=""
+              />
             </SwiperSlide>
           )}
         </Swiper>

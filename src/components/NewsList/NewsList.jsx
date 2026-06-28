@@ -8,6 +8,7 @@ import "swiper/css/mousewheel";
 
 import { NewsItem } from "../NewsItem/NewsItem";
 import styles from "./NewsList.module.css";
+import { Triangle } from "react-loader-spinner";
 
 export const NewsList = ({
   news,
@@ -60,7 +61,21 @@ export const NewsList = ({
 
       {isNewsLoading && (
         <SwiperSlide className={styles.slide}>
-          <div className={styles.loadingSlide}>Loading news...</div>
+            <Triangle
+              visible={isNewsLoading}
+              height="100"
+              width="100"
+              color="#4fa94d"
+              ariaLabel="triangle-loading"
+              wrapperStyle={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: 0,
+                margin: "auto",
+              }}
+              wrapperClass=""
+            />
         </SwiperSlide>
       )}
     </Swiper>

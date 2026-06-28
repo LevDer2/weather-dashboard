@@ -12,7 +12,7 @@ export const News = ({
     <section className={styles.news}>
       <div className="container">
         <h2 className={styles.title}>
-          The local news at your choosen location: {locationName}
+          The local news at your chosen location: {locationName}
         </h2>
         <NewsList
           news={news}

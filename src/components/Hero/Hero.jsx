@@ -3,6 +3,36 @@ import styles from "./Hero.module.css";
 
 export const Hero = ({ createLocation }) => {
   const [locationValue, setLocationValue] = useState("");
+  const getOrdinalDay = (day) => {
+    if (day > 3 && day < 21) {
+      return `${day}th`;
+    }
+
+    switch (day % 10) {
+      case 1:
+        return `${day}st`;
+      case 2:
+        return `${day}nd`;
+      case 3:
+        return `${day}rd`;
+      default:
+        return `${day}th`;
+    }
+  };
+
+  const now = new Date();
+
+  const monthYear = now.toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+
+  const weekday = now.toLocaleDateString("en-US", {
+    weekday: "long",
+  });
+
+  const day = getOrdinalDay(now.getDate());
+
   const handleSubmitLocation = (event) => {
     event.preventDefault();
     if (locationValue === "") {
@@ -23,8 +53,8 @@ export const Hero = ({ createLocation }) => {
           </p>
 
           <div className={styles.dateBox}>
-            <p className={styles.month}>October 2023</p>
-            <p className={styles.day}>Friday, 13th</p>
+            <p className={styles.month}>{monthYear}</p>
+            <p className={styles.day}>{weekday}, {day}</p>
           </div>
         </div>
 

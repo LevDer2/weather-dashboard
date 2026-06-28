@@ -11,8 +11,12 @@ import { weatherApi } from "./weatherApi";
 import { forecastApi } from "./forecastApi";
 import { picturesApi } from "./picturesApi";
 import { newsApi } from "./newsApi";
-
 import { useEffect, useState } from "react";
+
+import { MagnifyingGlass } from "react-loader-spinner";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // ! Weather States
@@ -24,6 +28,7 @@ function App() {
   );
   const [selectedWeather, setSelectedWeather] = useState(null);
   const [selectedForecast, setSelectedForecast] = useState(null);
+  const [isWeatherLoading, setIsWeatherLoading] = useState(false);
 
   // ! Images States
   const [selectedImages, setSelectedImages] = useState([]);
@@ -39,7 +44,6 @@ function App() {
   const [totalNews, setTotalNews] = useState(0);
   const [isNewsLoading, setIsNewsLoading] = useState(false);
 
-
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -48,8 +52,8 @@ function App() {
     setName(name);
   };
 
-  const createLocation = (locat) => {
-    setLocation(locat);
+  const createLocation = (locate) => {
+    setLocation(locate);
   };
 
   const handleDeleteLocation = (id) => {
@@ -74,42 +78,49 @@ function App() {
   };
 
   const handleRefreshLocation = (weather) => {
-  weatherApi(weather.name)
-    .then((updatedWeather) => {
-      setLocationsList((prevLocations) =>
-        prevLocations.map((location) =>
-          location.id === weather.id ? updatedWeather : location,
-        ),
-      );
+    weatherApi(weather.name)
+      .then((updatedWeather) => {
+        setLocationsList((prevLocations) =>
+          prevLocations.map((location) =>
+            location.id === weather.id ? updatedWeather : location,
+          ),
+        );
 
-      if (selectedWeather?.id === weather.id) {
-        setSelectedWeather(updatedWeather);
-
-        forecastApi(updatedWeather.name).then((res) => {
-          setSelectedForecast(res);
-        });
-      }
-    })
-    .catch((error) => {
-      console.log("Weather refresh error:", error);
-    });
-};
+        if (selectedWeather?.id === weather.id) {
+          setSelectedWeather(updatedWeather);
+          forecastApi(updatedWeather.name).then((res) => {
+            setSelectedForecast(res);
+          });
+          toast.success(`${updatedWeather.name} refreshed successfully!`);
+        } else {
+          toast.info(`${updatedWeather.name} was already refreshed!`);
+        }
+      })
+      .catch((error) => {
+        toast.error("Something went wrong");
+        console.log("Weather refresh error:", error);
+      });
+  };
 
   const handleShowMore = (weather) => {
     setSelectedWeather(weather);
 
-    forecastApi(weather.name).then((res) => {
-      setSelectedForecast(res);
-    });
+    setIsWeatherLoading(true);
 
-    // ! Images reseting
+    forecastApi(weather.name)
+      .then((res) => {
+        setSelectedForecast(res);
+      })
+      .finally(() => setIsWeatherLoading(false));
+
+    // ! Images resetting
 
     setImageQuery(weather.name);
     setSelectedImages([]);
     setImagePage(1);
     setTotalImages(0);
 
-    // ! News reseting
+    // ! News resetting
 
     setNewsQuery(weather.name);
     setSelectedNews([]);
@@ -186,21 +197,36 @@ function App() {
   };
 
   useEffect(() => {
-    if (location === "") {
+    if (location.trim() === "") {
       return;
     }
 
-    weatherApi(location).then((res) => {
-      setLocationsList((prevLocations) => {
-        const isAlreadyAdded = prevLocations.some((item) => item.id === res.id);
+    weatherApi(location)
+      .then((res) => {
+        setLocationsList((prevLocations) => {
+          const isAlreadyAdded = prevLocations.some(
+            (item) => item.id === res.id,
+          );
 
-        if (isAlreadyAdded) {
-          return prevLocations;
+          if (isAlreadyAdded) {
+            toast.info(`${res.name} is already added`);
+            return prevLocations;
+          }
+
+          toast.success(`${res.name} added successfully`);
+
+          return [...prevLocations, res];
+        });
+      })
+      .catch((error) => {
+        if (error.message === "city not found") {
+          toast.error("Location not found. Please check the city name.");
+          return;
         }
 
-        return [...prevLocations, res];
+        toast.error("Something went wrong. Please try again.");
+        console.log("Weather loading error:", error);
       });
-    });
   }, [location]);
 
   useEffect(() => {
@@ -220,6 +246,23 @@ function App() {
           handleDeleteLocation={handleDeleteLocation}
           handleShowMore={handleShowMore}
           handleRefreshLocation={handleRefreshLocation}
+        />
+        <MagnifyingGlass
+          visible={isWeatherLoading}
+          height="100"
+          width="100"
+          ariaLabel="magnifying-glass-loading"
+          wrapperStyle={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: 0,
+            margin: "auto",
+            marginBottom: "50px",
+          }}
+          wrapperClass="magnifying-glass-wrapper"
+          glassColor="#c0efff"
+          color="#e15b64"
         />
 
         <WeatherMoreSection
@@ -253,6 +296,17 @@ function App() {
       {isModalOpen && (
         <Modal handleModalToggle={handleModalToggle} createName={createName} />
       )}
+
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="colored"
+      />
     </>
   );
 }
